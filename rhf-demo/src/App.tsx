@@ -1,6 +1,7 @@
 
 import './App.css'
 import { YoutTubeForm } from './components/YoutTubeForm'
+import { YupYoutubeForm } from './components/YupYoutubeForm'
 
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
     <>
       <div>
         <YoutTubeForm />
+        {/* <YupYoutubeForm /> */}
        </div>
     </>
   )

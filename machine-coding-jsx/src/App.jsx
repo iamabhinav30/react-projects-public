@@ -5,7 +5,8 @@ import { AppRoutes } from './AppRoutes';
 function App() {
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+     <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-light shadow-sm">
+
         <div className="container d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center">
           {/* Brand and Menu */}
           <div className="d-flex flex-column flex-lg-row align-items-start align-items-lg-center w-100">

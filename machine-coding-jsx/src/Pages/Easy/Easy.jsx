@@ -2,6 +2,7 @@ import ProblemLayout from "../../components/ProblemLayout";
 
 const easyMenu = [
   { name: "Contact Form", path: "contact-form" },
+  { name: "Like Button", path: "like-button" },
 ];
 
 const Easy = () => {

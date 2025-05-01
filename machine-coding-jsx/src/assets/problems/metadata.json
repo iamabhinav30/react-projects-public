@@ -1,0 +1,15 @@
+{
+    "contact-form": {
+      "title": "Contact Form",
+      "description":  "Create a Contact Form Component that allows users to enter their name, email, and a message, and submit the form. Display a confirmation message after a successful submission.\n\nRequirements\n1. The form must contain three fields: name, email, and message and must have labels \"Name :\", \"Email:\", \"Message:\".\n2. All fields are required.\n3. The email field must be validated to ensure proper format.\n4. On submission, show a \"Thank you, User\" message, where User is the entered name.\n5. If you try to submit the form with any of the fields empty, it will prevent submission and show an error message like:\n• \"Name is required\" for the name field.\n• \"Email is required\" for the email field.\n• \"Message is required\" for the message field.\n6. If the email is not in valid format show an error message, \"Invalid email format\".\n\nConstraints & Edge Cases\n• Constraint 1: Name, email, and message are mandatory fields.\n• Constraint 2: Email must be in valid format.\n• Edge Case 1: User submits without filling fields - show error.\n• Edge Case 2: User enters invalid email → show specific email error.\n• Edge Case 3: After successful submission, fields should reset.",
+      "companies": ["Meta", "Amazon", "Uber"]
+    },
+    
+      "like-button": {
+        "title": "Like Button",
+        "description": "Create a Like button that changes its appearance based on different states.\nYou need to implement a Like button that behaves differently based on its current state: default, hover, and clicked. The button should change its styles and the heart icon color as follows:\n1. Default state: The button has a gray border, gray text color, a white background and a red heart\n2. Hover state: The button should show a red border and red text when hovered over.\n3. Clicked state: When clicked, the background color should change to red, the text color should become white, and the heart icon should change to white\n\nConstraints & Edge Cases\n• Ensure that the state transitions smoothly between hover and clicked states.\n• The button should toggle between the default and clicked states when clicked.\n• The button must be labelled \"Like\" to match the test cases.",
+        "companies": ["Amazon", "Twitter", "LinkedIn", "Oyo"]
+      }
+    
+    
+  }

@@ -1,8 +1,18 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { useEffect } from "react";
+
 
 const Sidebar = ({ menuItems = [], basePath = "" }) => {
   const location = useLocation();
+  const navigate = useNavigate();
+
+useEffect(() => {
+  if (location.pathname === basePath && menuItems.length > 0) {
+    navigate(`${basePath}/${menuItems[0].path}`, { replace: true });
+  }
+}, [location.pathname, basePath, menuItems, navigate]);
+
 
   const getCurrentSection = () => {
     if (location.pathname.startsWith("/easy")) return "Easy";
@@ -15,7 +25,7 @@ const Sidebar = ({ menuItems = [], basePath = "" }) => {
 
   return (
     <div
-      className="p-4"
+      className="p-4 col-md-2"
       style={{
         minWidth: "230px",
         minHeight: "100vh",

@@ -1,41 +1,45 @@
-import ContactForm from '../../Pages/Easy/ContactForm';
-import contactFormSource from '../../Pages/Easy/ContactForm.jsx?raw';
-import ContactFormTestSource from '../../__tests__/ContactForm.test.jsx?raw';
+import metadata from './metadata.json';
 
-export const problems = {
-  'contact-form': {
-    title: 'Contact Form',
-    Component: ContactForm,
-    testcases: ContactFormTestSource,
-    code: contactFormSource,
-    description: `* Create a Contact Form Component that allows users to enter their name, email, and a message, and submit the form. Display a confirmation message after a successful submission.
-    Requirements
-    1. The form must contain three fields: name, email, and message and must have labels "Name :"', "Email:", "Message:".
-    2. All fields are required.
-    3. The email field must be validated to ensure proper format.
-    4. On submission, show a "Thank you, User" message, where User is the entered name.
-    5. If you try to submit the form with any of the fields empty, it will prevent submission and show an error message like:
-    • "Name is required" for the name field.
-    • "Email is required" for the email field.
-    • "Message is required" for the message field.
-    6. If the email is not in valid format show an error message, "Invalid email format",
-    Constraints & Edge Cases
-    • Constraint 1: Name, email, and message are mandatory fields.
-    • Constraint 2: Email must be in valid format.
-    • Edge Case 1: User submits without filling fields - show error.
-    • Edge Case 2: User enters invalid email → show specific email error.
-    • Edge Case 3: After successful submission, fields should reset.
-    */`,
-    companies: [
-      { name: "Meta" },
-      { name: "Amazon" },
-      { name: "Google" },
-      { name: "Uber" },
-    ],
-    // testcases: [
-    //   '✅ Required field validation',
-    //   '✅ Invalid email check',
-    //   '✅ Success message on submission',
-    // ],
-  },
-};
+const componentModules = import.meta.glob('../../Pages/Easy/*.jsx', { eager: true });
+const rawModules = import.meta.glob('../../Pages/Easy/*.jsx', {
+  eager: true,
+  as: 'raw',
+});
+const testModules = import.meta.glob('../../__tests__/*.test.jsx', {
+  eager: true,
+  as: 'raw',
+});
+
+const toKebabCase = (str) =>
+  str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+
+export const problems = {};
+
+Object.entries(componentModules).forEach(([componentPath, mod]) => {
+  const fileName = componentPath.split('/').pop().replace('.jsx', '');      // "ContactForm"
+  const kebabKey = toKebabCase(fileName);                                   // "contact-form"
+  const meta = metadata[kebabKey];                                          // from metadata.json
+
+  // Match raw source and test file path
+  // const rawCode = Object.keys(rawModules).find((key) => key.includes(`${fileName}.jsx?raw`));
+  const rawPath = Object.keys(rawModules).find((key) =>
+    key.includes(`${fileName}.jsx`)
+  );
+  const rawCode = rawPath ? rawModules[rawPath] : '';
+  const testPath = Object.keys(testModules).find((key) =>
+    key.includes(`${fileName}.test.jsx`)
+  );
+  // const 
+  
+  // If no metadata or no default component, skip
+  if (!meta || !mod?.default) return;
+
+  problems[kebabKey] = {
+    title: meta.title || kebabKey,
+    description: meta.description || '',
+    companies: meta.companies || [],
+    Component: mod.default,
+    code: rawCode || '',
+    testcases : testPath ? testModules[testPath] : ''
+  };
+});

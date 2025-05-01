@@ -1,20 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import Sidebar from "./Sidebar";
 import { Outlet, useParams } from "react-router-dom";
 import { problems } from "../assets/problems";
-// import { problems } from "../problems";
+import { sections } from "../utilities/constants";
+import FullscreenModal from "./FullscreenModal";
 
 const ProblemLayout = ({ menuItems, basePath, title }) => {
   const { problemId } = useParams();
   const problem = problems[problemId];
+  const [copiedContext, setCopiedContext] = useState(null);
+  const [modalContext, setModalContext] = useState(null);
+
+  const handleCopy = (context) => {
+    const text = problems[problemId]?.[context];
+    if (text) {
+      navigator.clipboard.writeText(text).then(() => {
+        setCopiedContext(context);
+        setTimeout(() => setCopiedContext(null), 5000); // reset after 5 sec
+      });
+    }
+  };
+
+  const handleExpand = (context) => {
+    setModalContext(context);
+  };
 
   return (
     <div className="d-flex">
       <Sidebar menuItems={menuItems} basePath={basePath} />
-      <div className="flex-grow-1 p-4 w-100">
+      <div className="flex-grow-1 col-md-10 p-4">
         {/* Title and Companies */}
         <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-3">
-          
+
           {/* Companies */}
           {problem?.companies?.length > 0 && (
             <div className="d-flex flex-wrap gap-2 mt-2 mt-md-0">
@@ -24,7 +41,7 @@ const ProblemLayout = ({ menuItems, basePath, title }) => {
                   className="px-3 py-1 bg-light text-dark rounded-pill shadow-sm"
                   style={{ fontSize: "0.85rem", fontWeight: 500 }}
                 >
-                  {comp.name}
+                  {comp}
                 </span>
               ))}
             </div>
@@ -33,44 +50,70 @@ const ProblemLayout = ({ menuItems, basePath, title }) => {
 
         {/* 4 Quadrants */}
         <div className="row g-4">
-          {/* Description */}
-          <div className="col-12 col-md-6">
-            <div className="card shadow-sm">
-              <div className="card-header bg-info text-white fw-bold">Description</div>
-              <div className="card-body">
-                <Outlet context="description" />
-              </div>
-            </div>
-          </div>
+          <div className="row g-4">
+            {sections.map(({ title, context, bg, light, copy }, idx) => (
+              <div className="col-12 col-md-6" key={idx}>
+                <div className="card shadow-sm h-100 d-flex flex-column">
+                  <div className={`card-header ${bg} text-white fw-bold d-flex justify-content-between align-items-center`}>
+                    <span>{title}</span>
+                    {/* {copy && (
+          <button
+            className="btn btn-sm btn-outline-light d-flex align-items-center gap-1"
+            onClick={() => handleCopy(context)}
+          >
+            {copiedContext === context ? (
+              <>
+                <i className="bi bi-check2-all" />
+                <span>Copied</span>
+              </>
+            ) : (
+              <i className="bi bi-clipboard" title="Copy" />
+            )}
+          </button>
+        )} */}
+                    {copy && (
+                      <div className="d-flex align-items-center gap-2">
+                        <button
+                          className="btn btn-sm btn-outline-light d-flex align-items-center gap-1"
+                          onClick={() => handleCopy(context)}
+                        >
+                          {copiedContext === context ? (
+                            <>
+                              <i className="bi bi-check2-all" />
+                              <span>Copied</span>
+                            </>
+                          ) : (
+                            <i className="bi bi-clipboard" title="Copy" />
+                          )}
+                        </button>
 
-          {/* Output */}
-          <div className="col-12 col-md-6">
-            <div className="card shadow-sm">
-              <div className="card-header bg-primary text-white fw-bold">Output</div>
-              <div className="card-body">
-                <Outlet context="output" />
-              </div>
-            </div>
-          </div>
+                        <button
+                          className="btn btn-sm btn-outline-light"
+                          onClick={() => handleExpand(context)}
+                          title="Expand"
+                        >
+                          <i className="bi bi-arrows-fullscreen" />
+                        </button>
+                      </div>
+                    )}
 
-          {/* Code */}
-          <div className="col-12 col-md-6">
-            <div className="card shadow-sm">
-              <div className="card-header bg-dark text-white fw-bold">Code</div>
-              <div className="card-body bg-light">
-                <Outlet context="code" />
-              </div>
-            </div>
-          </div>
 
-          {/* Test Cases */}
-          <div className="col-12 col-md-6">
-            <div className="card shadow-sm">
-              <div className="card-header bg-success text-white fw-bold">Test Cases</div>
-              <div className="card-body">
-                <Outlet context="testcases" />
+                  </div>
+
+                  <div className={`card-body ${light ? "bg-light" : ""} d-flex flex-column h-100`}>
+                    <Outlet context={context} />
+                  </div>
+                </div>
               </div>
-            </div>
+            ))}
+
+            {modalContext && (
+              <div className="col-md-8">
+                <FullscreenModal title={modalContext} onClose={() => setModalContext(null)}>
+                  <Outlet context={modalContext} />
+                </FullscreenModal>
+              </div>
+            )}
           </div>
         </div>
       </div>

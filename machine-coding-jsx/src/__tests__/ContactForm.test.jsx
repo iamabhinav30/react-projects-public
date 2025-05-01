@@ -1,6 +1,6 @@
 import React from 'react';
 const { render, screen, fireEvent } = require("@testing-library/react");
-import ContactForm from '../Pages/ContactForm';
+import ContactForm from '../Pages/Easy/ContactForm';
 
 describe('ContactForm details',()=>{
     it('renders all fields',()=>{

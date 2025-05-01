@@ -1,3 +1,4 @@
+import ProblemLayout from "../../components/ProblemLayout";
 import Sidebar from "../../components/Sidebar";
 import { Outlet } from "react-router-dom";
 
@@ -7,12 +8,11 @@ const hardMenu = [
 
 const Hard = () => {
   return (
-    <div className="d-flex">
-      <Sidebar menuItems={hardMenu} basePath="/hard" />
-      <div className="flex-grow-1 p-4">
-        <Outlet />
-      </div>
-    </div>
+    <ProblemLayout
+    menuItems={hardMenu}
+    basePath="/medium"
+    title="medium"
+  />
   );
 };
 

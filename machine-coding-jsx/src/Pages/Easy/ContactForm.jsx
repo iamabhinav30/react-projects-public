@@ -1,23 +1,3 @@
-/**
- * Create a Contact Form Component that allows users to enter their name, email, and a message, and submit the form. Display a confirmation message after a successful submission.
-Requirements
-1. The form must contain three fields: name, email, and message and must have labels "Name :"
-', "Email:", "Message:".
-2. All fields are required.
-3. The email field must be validated to ensure proper format.
-4. On submission, show a "Thank you, User" message, where User is the entered name.
-5. If you try to submit the form with any of the fields empty, it will prevent submission and show an error message like:
-• "Name is required" for the name field.
-• "Email is required" for the email field.
-• "Message is required" for the message field.
-6. If the email is not in valid format show an error message, "Invalid email format",
-Constraints & Edge Cases
-• Constraint 1: Name, email, and message are mandatory fields.
-• Constraint 2: Email must be in valid format.
-• Edge Case 1: User submits without filling fields - show error.
-• Edge Case 2: User enters invalid email → show specific email error.
-• Edge Case 3: After successful submission, fields should reset.
-*/
 import React, { useState } from "react";
 
 function ContactForm() {
@@ -57,58 +37,58 @@ function ContactForm() {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container py-3">
       <div className="row justify-content-center">
         <div className="col-md-8 col-lg-6">
-          <h3 className="mb-4">Contact Us</h3>
+          <h5 className="mb-3">Contact Us</h5>
 
           {submitted && (
-            <div className="alert alert-success">
+            <div className="alert alert-success py-2 px-3 mb-3">
               Thank you, <strong>{user?.name}</strong>! Your message has been received.
             </div>
           )}
 
           <form onSubmit={handleSubmit} noValidate>
-            <div className="mb-3">
-              <label htmlFor="name" className="form-label">Name</label>
+            <div className="mb-2">
+              <label htmlFor="name" className="form-label mb-1">Name</label>
               <input
                 id="name"
                 type="text"
                 name="name"
-                className={`form-control ${errors.name ? 'is-invalid' : ''}`}
+                className={`form-control form-control-sm ${errors.name ? 'is-invalid' : ''}`}
                 value={form.name}
                 onChange={handleChange}
               />
               {errors.name && <div className="invalid-feedback">{errors.name}</div>}
             </div>
 
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">Email</label>
+            <div className="mb-2">
+              <label htmlFor="email" className="form-label mb-1">Email</label>
               <input
                 id="email"
                 type="email"
                 name="email"
-                className={`form-control ${errors.email ? 'is-invalid' : ''}`}
+                className={`form-control form-control-sm ${errors.email ? 'is-invalid' : ''}`}
                 value={form.email}
                 onChange={handleChange}
               />
               {errors.email && <div className="invalid-feedback">{errors.email}</div>}
             </div>
 
-            <div className="mb-3">
-              <label htmlFor="message" className="form-label">Message</label>
+            <div className="mb-2">
+              <label htmlFor="message" className="form-label mb-1">Message</label>
               <textarea
                 id="message"
                 name="message"
-                rows="4"
-                className={`form-control ${errors.message ? 'is-invalid' : ''}`}
+                rows="3"
+                className={`form-control form-control-sm ${errors.message ? 'is-invalid' : ''}`}
                 value={form.message}
                 onChange={handleChange}
               />
               {errors.message && <div className="invalid-feedback">{errors.message}</div>}
             </div>
 
-            <button type="submit" className="btn btn-primary w-100">
+            <button type="submit" className="btn btn-sm btn-primary w-100 mt-2">
               Submit
             </button>
           </form>

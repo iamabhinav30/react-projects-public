@@ -1,18 +1,17 @@
-import Sidebar from "../../components/Sidebar";
-import { Outlet } from "react-router-dom";
+// Medium.jsx
+import ProblemLayout from "../../components/ProblemLayout";
 
 const mediumMenu = [
-  { name: "Contaact Form", path: "contact-form" }
+  { name: "Todo List", path: "todo-list" },
 ];
 
 const Medium = () => {
   return (
-    <div className="d-flex">
-      <Sidebar menuItems={mediumMenu} basePath="/medium" />
-      <div className="flex-grow-1 p-4">
-        <Outlet />
-      </div>
-    </div>
+    <ProblemLayout
+      menuItems={mediumMenu}
+      basePath="/medium"
+      title="medium"
+    />
   );
 };
 

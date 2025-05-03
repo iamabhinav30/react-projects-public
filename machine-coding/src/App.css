@@ -1,0 +1,78 @@
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+  }
+  .modal-body pre {
+    max-height: unset !important;
+    height: 100%;
+  }
+  
+  .btn-machine-coding {
+    color: #1877F2 !important;
+    border-color: #1877F2 !important;
+  }
+  
+  .btn-machine-coding:hover {
+    background-color: #145dbf !important;
+    border-color: #145dbf!important;
+    color: #fff !important;
+  }
+
+  .tab-machine-coding {
+    color: #145dbf !important;
+    background-color: rgba(20, 93, 191, 0.1) !important;
+
+  }
+
+  .level-tab {
+    border-radius: 25%;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    font-weight: bold;
+  }
+  .level-tab {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-weight: bold;
+  }
+  
+  .tab-easy {
+    color: green !important;
+    background-color: rgba(0, 128, 0, 0.1) !important;
+  }
+  
+  .tab-medium {
+    color: orange !important;
+    background-color: rgba(255, 165, 0, 0.1) !important;
+  }
+  
+  .tab-hard {
+    color: red !important;
+    background-color: rgba(255, 0, 0, 0.1) !important;
+  }
+  
+  .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.422); /* transparent white */
+    z-index: 9999; /* Ensure it’s on top of everything */
+  }
+  
+  .rotate-clockwise {
+    animation: rotate 1s linear infinite;
+  }
+  
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+  
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  

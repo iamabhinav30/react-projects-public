@@ -1,0 +1,25 @@
+{
+  "contact-form": {
+    "title": "Contact Form",
+    "description": "Develop a contact form that lets users provide their name, email address, and a message. Upon successful form submission, display a personalized confirmation.\n\nRequirements:\n1. Include three labeled fields: \"Name:\", \"Email:\", and \"Message:\".\n2. All input fields must be filled before submission.\n3. The email must follow a valid format.\n4. Upon submitting valid data, show: \"Thank you, [User]\" using the entered name.\n5. If fields are left empty, display validation messages:\n• 'Name is required'\n• 'Email is required'\n• 'Message is required'\n6. If email is incorrectly formatted, show: 'Invalid email format'.\n\nConstraints & Edge Cases:\n• All fields are mandatory.\n• Email should match standard format rules.\n• Submitting empty inputs should show respective errors.\n• Invalid emails should trigger specific error feedback.\n• After a successful submission, reset the form values.",
+    "companies": ["Meta", "Amazon", "Uber"]
+  },
+
+  "like-button": {
+    "title": "Like Button",
+    "description": "Design a Like button component with visual transitions based on user interaction.\nThe button should update its appearance in three distinct states: default, hover, and active (clicked).\n\nState behavior:\n1. Default: gray border and text, white background, red heart icon.\n2. On hover: red border and red text.\n3. On click: red background, white text, and white heart icon.\n\nConstraints & Edge Cases:\n• Ensure smooth transitions between each visual state.\n• Toggling the button should switch between liked and unliked states.\n• The button must display the label \"Like\" for accessibility and consistency.",
+    "companies": ["Amazon", "Twitter", "LinkedIn", "Oyo"]
+  },
+
+  "todo-list": {
+    "title": "Todo List",
+    "description": "Create a fully functional Todo List component that allows users to manage tasks effectively:\n• Add new todos\n• Mark tasks as completed\n• Remove individual todos\n• View the full list\n\nRequirements:\n• Store todos in component state.\n• Each todo should include: an id, text, and a completed status (boolean).\n• Provide an input with placeholder 'Enter todo' and an 'add' button.\n• Display todos with text, a checkbox to toggle complete, and a 'delete' button.\n• Completed tasks must appear with a strikethrough.\n\nConstraints & Edge Cases:\n• Empty strings should not be accepted.\n• Duplicate entries (case-insensitive) are allowed.\n• Deleting one task must not affect others.\n• All interactions should instantly reflect in the UI.",
+    "companies": ["Google", "Amazon", "Flipkart"]
+  },
+  "smart-otp": {
+    "title": "Smart OTP",
+    "description": "Build a user-friendly 4-digit OTP input component in React, where each digit is entered in a separate input field. The component should handle seamless keyboard navigation, smart pasting, and input validation.\n\nRequirements:\n• Render 4 individual input boxes for each digit.\n• After typing a digit, auto-focus should move to the next field.\n• If the current field is empty and backspace is pressed, focus should shift to the previous field.\n• Allow pasting a complete 4-digit OTP (e.g., '1234') and automatically populate the inputs.\n• Ensure that only numeric characters are accepted.\n• When all 4 digits are filled, invoke a callback (onComplete) with the full OTP as a string.\n\nConstraints & Edge Cases:\n• Input should strictly allow digits from 0-9.\n• Navigating backward with backspace should work intuitively.\n• Pasting a string like '1234' should auto-fill the fields from left to right.",
+    "companies": ["PhonePe", "Paytm"]
+  }
+
+}

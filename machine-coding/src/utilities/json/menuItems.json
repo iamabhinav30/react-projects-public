@@ -1,0 +1,13 @@
+{
+    "easyMenu": [
+      { "name": "Contact Form", "path": "contact-form" },
+      { "name": "Like Button", "path": "like-button" }
+    ],
+    "mediumMenu": [
+      { "name": "Todo List", "path": "todo-list" }
+    ],
+    "hardMenu": [
+      { "name": "Smart Otp", "path": "smart-otp" }
+    ]
+  }
+  
